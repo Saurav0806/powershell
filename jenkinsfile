@@ -14,8 +14,7 @@ pipeline {
                     dockerImage = docker.build("my-docker-image:latest", "-f Dockerfile .")
                 }
                 script {
-                    dockerImage.inside {
-                        sh './resource_info.sh'
+                    def dockerContainer = docker.image('my-docker-image:latest').run('-p 8080:80', '-d')
                     }
                 }
             }
