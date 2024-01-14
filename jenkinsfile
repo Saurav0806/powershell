@@ -11,7 +11,7 @@ pipeline {
         stage('Build and Test') {
             steps {
                 script {
-                    dockerImage = docker.build("my-docker-image:latest", "-f Dockerfile .")
+                    dockerImage = docker.build("my-docker-image:latest")
                 }
                 script {
                     def dockerContainer = docker.image('my-docker-image:latest').run('-p 8060:80', '-d')
