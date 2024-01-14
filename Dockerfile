@@ -1,17 +1,9 @@
 FROM nginx:latest
-
-# Set the working directory inside the container
-WORKDIR /usr/share/nginx/html
-
-# Copy the shell script and make it executable
-COPY resource_info.sh .
-RUN chmod +x resource_info.sh
-
-# Copy any other files you want to include in the image
-COPY output.txt /usr/share/nginx/html/index.html
-
-# Expose port 80 (default port for NGINX)
+COPY system_info.sh /usr/share/nginx/html/system_info.sh
+RUN chmod +x /usr/share/nginx/html/system_info.sh
+#RUN mkdir -p /usr/share/nginx/html
+RUN /usr/share/nginx/html/system_info.sh
+RUN ls -la
+#COPY /usr/share/nginx/html/index.html /usr/share/nginx/html/
 EXPOSE 80
-
-# Start NGINX when the container starts
 CMD ["nginx", "-g", "daemon off;"]
