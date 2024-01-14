@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                script {
+                    dockerImage = docker.build("my-docker-image:latest", "-f Dockerfile .")
+                }
+                script {
+                    dockerImage.inside {
+                        sh './resource_info.sh'
+                    }
+                }
+            }
+        }
+
+        stage('Verify') {
+            steps {
+                script {
+                    dockerImage.inside {
+                        sh 'curl -fsSL http://localhost:8080/system_resources.html'
+                    }
+                }
+            }
+        }
+    }
+}
