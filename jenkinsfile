@@ -14,7 +14,7 @@ pipeline {
                     dockerImage = docker.build("docker-image:latest")
                 }
                 script {
-                    sh "docker run -d -p 8054:80 docker-image:latest"
+                    sh "docker run -d -p 8078:80 docker-image:latest"
                     }
                 }
             
@@ -25,7 +25,7 @@ pipeline {
          {
          script
          {
-             sh "curl http:// 65.1.3.238:8054"
+             sh "curl http:// 65.1.3.238:8078"
          }
      }
 }
