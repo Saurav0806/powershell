@@ -14,7 +14,7 @@ pipeline {
                     dockerImage = docker.build("docker-image:latest")
                 }
                 script {
-                    sh "docker run -p 8070:80 docker-image:latest"
+                    sh "docker run -d -p 8070:80 docker-image:latest"
                     }
                 }
             
