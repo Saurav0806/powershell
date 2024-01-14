@@ -8,7 +8,7 @@ COPY resource_info.sh .
 RUN chmod +x resource_info.sh
 
 # Copy any other files you want to include in the image
-COPY  /usr/share/nginx/html/index.html
+COPY output.txt /usr/share/nginx/html/index.html
 
 # Expose port 80 (default port for NGINX)
 EXPOSE 80
