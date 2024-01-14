@@ -17,7 +17,7 @@ pipeline {
                     def dockerContainer = docker.image('my-docker-image:latest').run('-p 8080:80', '-d')
                     }
                 }
-            }
+            
         }
 
         stage('Verify') {
